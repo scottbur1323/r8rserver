@@ -10,19 +10,21 @@ app.use(morgan("dev"))
 app.use(bodyParser.json())
 app.use(cors())
 
-app.use('/user', require('./routes/user'))
+app.use('/users', require('./routes/users'))
+app.use('/ratings', require('./routes/ratings'))
+app.use('/items', require('./routes/items'))
 
-app.get("/recipe", (req, res, next) => {
-  res.send(recipeList)
+app.get("/hello", (req, res, next) => {
+  res.send("HELLO")
 })
 
-app.post("/upload", upload.single("photo"), (req, res, next) => {
-  runClarifai(req.file.location)
-  .then(data=> {
-    res.send(data)
-  })
-  .catch(next)
-})
+// app.post("/upload", upload.single("photo"), (req, res, next) => {
+//   runClarifai(req.file.location)
+//   .then(data=> {
+//     res.send(data)
+//   })
+//   .catch(next)
+// })
 // function runClarifai(image) {
 //     const app = new Clarifai.App({
 //     apiKey: process.env.CLARIFAI_KEY

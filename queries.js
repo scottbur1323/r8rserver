@@ -1,19 +1,26 @@
 const database = require("./db/knex.js")
 
 module.exports = {
-  list(){
-    return database('users').select()
+  listusers(){
+    return database('secretusers').select()
   },
-  read(id){
-    return database('users').where("id", id).first()
+  listratings(){
+    return database('secretratings').select()
   },
-  create(meal){
-    return database('users').insert(meal).returning('*').then(record => record[0])
-  },
-  update(id, meal){
-    return database("users").update(meal).where("id", id).returning("*").then(record => record[0])
-  },
-  delete(id){
-    return database("users").delete().where("id", id)
+  listitems(){
+    return database('secretitems').select()
   }
+  // ,
+  // read(id){
+  //   return database('users').where("id", id).first()
+  // },
+  // create(meal){
+  //   return database('users').insert(meal).returning('*').then(record => record[0])
+  // },
+  // update(id, meal){
+  //   return database("users").update(meal).where("id", id).returning("*").then(record => record[0])
+  // },
+  // delete(id){
+  //   return database("users").delete().where("id", id)
+  // }
 }
